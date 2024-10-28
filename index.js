@@ -137,13 +137,14 @@ async function displayMovies() {
 async function updateCustomerEmail(customerId, newEmail) {
   // TODO: Add code to update a customer's email address
   const query = `UPDATE customers SET email = $1 WHERE customer_id = $2 RETURNING *`;
-  try{
-  const result = await pool.query(query, [newEmail, customerId])
-  console.log(`Updated customer email, customer id ${customerId} to ${result.rows[0].email}`)
-  } catch(error){
-    console.log(error)
+  try {
+    const result = await pool.query(query, [newEmail, customerId]);
+    console.log(
+      `Updated customer email, customer id ${customerId} to ${result.rows[0].email}`
+    );
+  } catch (error) {
+    console.log(error);
   }
-
 }
 
 /**
@@ -153,6 +154,13 @@ async function updateCustomerEmail(customerId, newEmail) {
  */
 async function removeCustomer(customerId) {
   // TODO: Add code to remove a customer and their rental history
+  const query = "DELETE FROM customers WHERE customer_id = $1 RETURNING *";
+  try {
+    const result = await pool.query(query, [customerId]);
+    console.log(`Deleted customer with id ${customerId}`);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 /**
