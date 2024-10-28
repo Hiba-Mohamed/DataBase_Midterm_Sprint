@@ -173,12 +173,12 @@ async function hasMovies() {
  */
 async function runCLI() {
   await createTable();
-  
-  const check = await hasMovies();
-  if (!check){
-    await insertSampleData()
-  }
 
+  const check = await hasMovies();
+
+  if (!check) {
+    await insertSampleData();
+  }
 
   const args = process.argv.slice(2);
   switch (args[0]) {
@@ -213,54 +213,48 @@ async function runCLI() {
 }
 
 async function insertSampleData() {
-    await insertMovie("The Godfather", 1972, "Crime", "Francis Ford Coppola");
-    await insertMovie("The Dark Knight", 2008, "Action", "Christopher Nolan");
-    await insertMovie("Schindler's List", 1993, "Drama", "Steven Spielberg");
-    await insertMovie("Pulp Fiction", 1994, "Crime", "Quentin Tarantino");
-    await insertMovie(
-      "The Lord of the Rings: The Fellowship of the Ring",
-      2001,
-      "Fantasy",
-      "Peter Jackson"
-    );
+  await insertMovie("The Godfather", 1972, "Crime", "Francis Ford Coppola");
+  await insertMovie("The Dark Knight", 2008, "Action", "Christopher Nolan");
+  await insertMovie("Schindler's List", 1993, "Drama", "Steven Spielberg");
+  await insertMovie("Pulp Fiction", 1994, "Crime", "Quentin Tarantino");
+  await insertMovie(
+    "The Lord of the Rings: The Fellowship of the Ring",
+    2001,
+    "Fantasy",
+    "Peter Jackson"
+  );
 
-    await insertCustomer("John", "Doe", "john.doe@example.com", "123-456-7890");
-    await insertCustomer(
-      "Jane",
-      "Smith",
-      "jane.smith@example.com",
-      "234-567-8901"
-    );
-    await insertCustomer(
-      "Mike",
-      "Johnson",
-      "mike.johnson@example.com",
-      "345-678-9012"
-    );
-    await insertCustomer(
-      "Emily",
-      "Brown",
-      "emily.brown@example.com",
-      "456-789-0123"
-    );
-    await insertCustomer(
-      "Chris",
-      "Lee",
-      "chris.lee@example.com",
-      "567-890-1234"
-    );
+  await insertCustomer("John", "Doe", "john.doe@example.com", "123-456-7890");
+  await insertCustomer(
+    "Jane",
+    "Smith",
+    "jane.smith@example.com",
+    "234-567-8901"
+  );
+  await insertCustomer(
+    "Mike",
+    "Johnson",
+    "mike.johnson@example.com",
+    "345-678-9012"
+  );
+  await insertCustomer(
+    "Emily",
+    "Brown",
+    "emily.brown@example.com",
+    "456-789-0123"
+  );
+  await insertCustomer("Chris", "Lee", "chris.lee@example.com", "567-890-1234");
 
-    await insertRental(1, 1, "2024-10-01", "2024-10-07");
-    await insertRental(2, 2, "2024-10-02", "2024-10-08");
-    await insertRental(3, 3, "2024-10-03", "2024-10-09");
-    await insertRental(4, 4, "2024-10-04", "2024-10-10");
-    await insertRental(5, 5, "2024-10-05", "2024-10-11");
-    await insertRental(1, 2, "2024-10-06", "2024-10-12");
-    await insertRental(2, 3, "2024-10-07", "2024-10-13");
-    await insertRental(3, 4, "2024-10-08", "2024-10-14");
-    await insertRental(4, 5, "2024-10-09", "2024-10-15");
-    await insertRental(5, 1, "2024-10-10", "2024-10-16");
-  }
-
+  await insertRental(1, 1, "2024-10-01", "2024-10-07");
+  await insertRental(2, 2, "2024-10-02", "2024-10-08");
+  await insertRental(3, 3, "2024-10-03", "2024-10-09");
+  await insertRental(4, 4, "2024-10-04", "2024-10-10");
+  await insertRental(5, 5, "2024-10-05", "2024-10-11");
+  await insertRental(1, 2, "2024-10-06", "2024-10-12");
+  await insertRental(2, 3, "2024-10-07", "2024-10-13");
+  await insertRental(3, 4, "2024-10-08", "2024-10-14");
+  await insertRental(4, 5, "2024-10-09", "2024-10-15");
+  await insertRental(5, 1, "2024-10-10", "2024-10-16");
+}
 
 runCLI();
