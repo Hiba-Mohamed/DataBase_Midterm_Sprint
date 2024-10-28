@@ -1,0 +1,3 @@
+
+Explain how the tables (created using the previous queries) are each in 3NF:
+

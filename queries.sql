@@ -55,3 +55,15 @@ INSERT INTO rentals (customer_id, movie_id, rental_date, return_date) VALUES
     (4, 5, '2024-10-09', '2024-10-15'),
     (5, 1, '2024-10-10', '2024-10-16')
 RETURNING *;
+
+-- Provide PostgreSQL queries to solve the following:
+-- 1- Find all movies rented by a specific customer, given their email.
+
+-- 2- Given a movie title, list all customers who have rented the movie
+
+-- 3- Get the rental history for a specific movie title
+
+-- 4- For a specific movie director:
+--    Find the name of the customer, the date of the rental and title of the movie, each time a movie by that director was rented
+
+-- 5- List all currently rented out movies (movies who's return dates haven't been met)
