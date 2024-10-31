@@ -1,3 +1,30 @@
 
 Explain how the tables (created using the previous queries) are each in 3NF:
 
+Genre Table: 
+Each column contains atomic values, no repeating groups or arrays, satisfing First Normal Form (1NF) requirments. 
+The genre_id serves as the primary key, the genre_name is entirely dependent on the genre_id,
+meaning that there is no partial dependencies and fulfilling the criteria for Second Normal Form (2NF). 
+Furthermore, there are no transitive dependencies, as genre_name is directly associated with the 
+primary key without relying on any other non-key attributes satisfying (3NF). 
+
+Movies table:
+Each column in the Movies table contains atomic values, ensuring that there are no repeating groups or arrays,
+which satisfies the requirements of First Normal Form (1NF). The movie_id serves as the primary key, while 
+the attributes movie_title, release_year, genre_id, and director_name are fully functionally dependent on the movie_id. 
+This means that if the movie_id changes, all associated values must also change, thereby satisfying the criteria for 
+Second Normal Form (2NF). Additionally, a transitive dependency that previously existed has been eliminated by creating a 
+separate Genres table and linking the two tables through the genre_id. This restructuring not only removes the transitive
+dependency satisfying (3NF) but also effectively reduces redundancy, enhancing the overall efficiency and integrity of the database design.
+
+Customer table:
+Each column contains atomic values, no repeating groups or arrays, satisfing First Normal Form (1NF) requirments. 
+The customer_id serves as the primary key, all the non-key attributes entirely depend on it,
+meaning that there is no partial dependencies and fulfilling the criteria for Second Normal Form (2NF). 
+Furthermore, there are no transitive dependencies,satisfying (3NF). 
+
+Rentals Table:
+Each column contains atomic values, no repeating groups or arrays, satisfing First Normal Form (1NF) requirments. 
+the primary key is  the rental_id all the non-key attributes entirely depend on it,
+meaning that there is no partial dependencies and fulfilling the criteria for Second Normal Form (2NF). 
+Furthermore, there are no transitive dependencies,satisfying (3NF). 
