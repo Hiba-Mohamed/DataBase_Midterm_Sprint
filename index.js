@@ -22,7 +22,7 @@ async function createTable() {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS genres (
         genre_id SERIAL PRIMARY KEY,
-        genre_name VARCHAR
+        genre_name TEXT NOT NULL
       );
     `);
 
@@ -288,15 +288,15 @@ async function insertSampleData() {
   );
   await insertCustomer("Chris", "Lee", "chris.lee@example.com", "567-890-1234");
 
-  await insertRental(1, 1, "2024-10-01", "2024-10-07");
+  await insertRental(1, 1, "2024-10-01", "2024-11-07");
   await insertRental(2, 2, "2024-10-02", "2024-10-08");
-  await insertRental(3, 3, "2024-10-03", "2024-10-09");
+  await insertRental(3, 3, "2024-10-03", "2024-12-09");
   await insertRental(4, 4, "2024-10-04", "2024-10-10");
   await insertRental(5, 5, "2024-10-05", "2024-10-11");
-  await insertRental(1, 2, "2024-10-06", "2024-10-12");
+  await insertRental(1, 2, "2024-10-06", "2024-12-12");
   await insertRental(2, 3, "2024-10-07", "2024-10-13");
   await insertRental(3, 4, "2024-10-08", "2024-10-14");
-  await insertRental(4, 5, "2024-10-09", "2024-10-15");
+  await insertRental(4, 5, "2024-10-09", "2024-12-15");
   await insertRental(5, 1, "2024-10-10", "2024-10-16");
 }
 
