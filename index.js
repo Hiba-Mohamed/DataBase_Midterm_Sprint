@@ -18,12 +18,20 @@ async function createTable() {
   // TODO: Add code to create Movies, Customers, and Rentals tables
 
   try {
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS genres (
+        genre_id SERIAL PRIMARY KEY,
+        genre_name VARCHAR
+      );
+    `);
+
     await pool.query(`
       CREATE TABLE IF NOT EXISTS movies (
         movie_id SERIAL PRIMARY KEY,
         movie_title TEXT NOT NULL,
         release_year INTEGER NOT NULL,
-        movie_genre TEXT NOT NULL,
+        genre_id INTEGER REFERENCES genres(genre_id) ON DELETE CASCADE ,
         director_name TEXT NOT NULL
       );
     `);
@@ -47,14 +55,17 @@ async function createTable() {
         return_date DATE NOT NULL
       );
     `);
+
+
+
     console.log(
-      "---------------------------------------------------------------------"
+      "-----------------------------------------------------------------------------"
     );
     console.log(
-      "| OK    Movies, Customers, and Rentals tables created successfully! |"
+      "| OK    Movies, Customers, Genres, and Rentals tables created successfully! |"
     );
     console.log(
-      "---------------------------------------------------------------------"
+      "-----------------------------------------------------------------------------"
     );
   } catch (error) {
     console.log(
@@ -78,11 +89,11 @@ async function createTable() {
  * @param {string} genre Genre of the movie
  * @param {string} director Director of the movie
  */
-async function insertMovie(title, year, genre, director) {
+async function insertMovie(title, year, genre_id, director) {
   // TODO: Add code to insert a new movie into the Movies table
   const query =
-    "INSERT INTO movies (movie_title, release_year, movie_genre, director_name) VALUES ($1,$2,$3,$4) RETURNING *";
-  const result = await pool.query(query, [title, year, genre, director]);
+    "INSERT INTO movies (movie_title, release_year, genre_id, director_name) VALUES ($1,$2,$3,$4) RETURNING *";
+  const result = await pool.query(query, [title, year, genre_id, director]);
   console.log(
     `Added movie: ${result.rows[0].movie_title} by ${result.rows[0].director_name}`
   );
@@ -108,6 +119,17 @@ async function insertRental(customer_id, movie_id, rental_date, return_date) {
   ]);
   console.log(
     `Added rental: ${result.rows[0].rental_id}", Customer: " ${result.rows[0].customer_id}", Movie:" ${result.rows[0].movie_id}`
+  );
+}
+
+async function insertGenre(genreName) {
+  const query =
+    "INSERT INTO genres (genre_name) VALUES ($1) RETURNING *";
+  const result = await pool.query(query, [
+    genreName
+  ]);
+  console.log(
+    `Added genre: ${result.rows[0].genre_name}`
   );
 }
 /**
@@ -229,14 +251,19 @@ async function runCLI() {
 }
 
 async function insertSampleData() {
-  await insertMovie("The Godfather", 1972, "Crime", "Francis Ford Coppola");
-  await insertMovie("The Dark Knight", 2008, "Action", "Christopher Nolan");
-  await insertMovie("Schindler's List", 1993, "Drama", "Steven Spielberg");
-  await insertMovie("Pulp Fiction", 1994, "Crime", "Quentin Tarantino");
+  await insertGenre("Crime");
+  await insertGenre("Drama");
+  await insertGenre("Action");
+  await insertGenre("Fantasy");
+  
+  await insertMovie("The Godfather", 1972, 1, "Francis Ford Coppola");
+  await insertMovie("The Dark Knight", 2008, 3, "Christopher Nolan");
+  await insertMovie("Schindler's List", 1993, 2, "Steven Spielberg");
+  await insertMovie("Pulp Fiction", 1994, 1, "Quentin Tarantino");
   await insertMovie(
     "The Lord of the Rings: The Fellowship of the Ring",
     2001,
-    "Fantasy",
+    4,
     "Peter Jackson"
   );
 
