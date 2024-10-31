@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "insert": "node index.js insert",
-    "show": "node index.js show",
-    "update": "node index.js update",
-    "remove": "node index.js remove"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matthew English",
   "license": "MIT",

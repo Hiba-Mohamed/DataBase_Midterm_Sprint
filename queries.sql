@@ -58,8 +58,18 @@ RETURNING *;
 
 -- Provide PostgreSQL queries to solve the following:
 -- 1- Find all movies rented by a specific customer, given their email.
+SELECT movies.movie_title, movies.release_year, movies.genre_id, movies.director_name
+FROM movies
+JOIN rentals ON movies.movie_id = rentals.movie_id
+JOIN customers ON customers.customer_id = rentals.customer_id
+WHERE customers.email = 'jane.smith@example.com';
 
 -- 2- Given a movie title, list all customers who have rented the movie
+SELECT customers.first_name, customers.last_name
+FROM customers
+JOIN rentals ON rentals.customer_id = customers.customer_id
+JOIN movies ON rentals.movie_id = movies.movie_id 
+WHERE movies.movie_title = 'The Godfather'
 
 -- 3- Get the rental history for a specific movie title
 
